@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: phaigo-postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-phaigo}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-phaigo_secure_password}
+      POSTGRES_DB: ${POSTGRES_DB:-phaigo_db}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - phaigo-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U phaigo"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: phaigo-app
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://phaigo:pw@postgres:5432/phaigo_db
+      - NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=${NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID}
+      - NEXT_PUBLIC_GCP_WS_ENDPOINT_SEPOLIA=${NEXT_PUBLIC_GCP_WS_ENDPOINT_SEPOLIA}
+      - NEXT_PUBLIC_GCP_WS_ENDPOINT_MAINNET=${NEXT_PUBLIC_GCP_WS_ENDPOINT_MAINNET}
+      - NEXT_PUBLIC_PYUSD_CONTRACT_ADDRESS=${NEXT_PUBLIC_PYUSD_CONTRACT_ADDRESS}
+      - NEXT_PUBLIC_PYUSD_TESTNET_CONTRACT_ADDRESS=${NEXT_PUBLIC_PYUSD_TESTNET_CONTRACT_ADDRESS}
+      - GCP_HTTP_ENDPOINT_SEPOLIA=${GCP_HTTP_ENDPOINT_SEPOLIA}
+      - GCP_HTTP_ENDPOINT_MAINNET=${GCP_HTTP_ENDPOINT_MAINNET}
+      - GCP_API_KEY=${GCP_API_KEY}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - phaigo-network
+
+networks:
+  phaigo-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
