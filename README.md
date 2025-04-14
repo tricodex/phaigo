@@ -201,3 +201,9 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+## Commit History
+
+![Commit History](public/commits.png)
+
+I had exposed some private keys in my commits, that is why I moved to a fresh repository, if I need to prove my original commit history any further please contact me.
