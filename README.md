@@ -108,7 +108,7 @@ Future plans for Phaigo include:
 
 ## Test the Live App
 
-Visit: [phaigo live](phaigo.vercel.app)
+Visit: [phaigo live](https://phaigo.vercel.app)
 
 This is the alpha version of the app there could be bugs and rate limiting.
 
