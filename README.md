@@ -1,5 +1,7 @@
 # Phaigo - Payments Made Simple
 
+Visit: [App](https://phaigo.vercel.app)
+
 Phaigo is a application for PYSUD Payments. It allows users to:
 
 - Create personal profiles with custom usernames
@@ -206,4 +208,4 @@ limitations under the License.
 
 ![Commit History](public/commits.png)
 
-I had exposed some private keys in my commits, that is why I moved to a fresh repository, if I need to prove my original commit history any further please contact me.
+I had exposed some private keys in my commits, that is why I moved to a fresh repository. The app is fully designed for utilizing PYUSD and GCP Blockchain so I think it is clear that this is not from another project, but if I need to prove my original commit history any further please contact me.
