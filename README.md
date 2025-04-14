@@ -1,6 +1,7 @@
 # Phaigo - Payments Made Simple
 
 Visit: [App](https://phaigo.vercel.app) (Alpha Version)
+Video: [Youtube](https://youtu.be/9R6En16OFXQ)
 
 Phaigo is a application for PYSUD Payments. It allows users to:
 
